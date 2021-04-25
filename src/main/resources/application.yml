@@ -1,0 +1,4 @@
+serve:
+  error:
+    include-stacktrace: never
+
