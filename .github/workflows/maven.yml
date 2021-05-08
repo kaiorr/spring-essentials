@@ -34,4 +34,3 @@ jobs:
     steps:
     
     - name: Teste
-    run: echo 'Deploy Dev'
