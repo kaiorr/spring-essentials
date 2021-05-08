@@ -1,10 +1,9 @@
 package com.kaio.ribeiro.springessentials.controller;
 
-import com.kaio.ribeiro.springessentials.Util.DateUtil;
 import com.kaio.ribeiro.springessentials.domain.Anime;
 import com.kaio.ribeiro.springessentials.service.AnimeService;
+import com.kaio.ribeiro.springessentials.util.DateUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("animes")
-@Log4j2
 @RequiredArgsConstructor
 public class AnimeController {
     private final DateUtil dateUtil;
@@ -22,8 +20,8 @@ public class AnimeController {
 
     @GetMapping
     public ResponseEntity<List<Anime>> list() {
-        log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
-        return new ResponseEntity<>(animeService.listAll(), HttpStatus.OK);
+        dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now());
+        return ResponseEntity.ok(animeService.listAll());
     }
 
     @GetMapping(path = "/{id}")
@@ -47,5 +45,4 @@ public class AnimeController {
         animeService.replace(anime);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }
